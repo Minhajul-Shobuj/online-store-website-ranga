@@ -35,11 +35,17 @@ body {
   align-items: center;
   justify-content: center;
 }
-.single-product {
+.product {
+  background-color: rgba(122, 185, 185, 0.034);
+  border-radius: 7px;
+  margin: 10px;
+  width: 300px;
+  height: 450px;
   padding: 10px;
+  box-shadow: 2px 2px 4px gray;
   transition: 0.6s;
 }
-.single-product:hover {
+.product:hover {
   box-shadow: 4px 4px 7px gray;
   border-radius: 10px;
   border: 1px solid cyan;
