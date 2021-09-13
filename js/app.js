@@ -13,7 +13,7 @@ const showProducts = (products) => {
   for (const product of allProducts) {
     const div = document.createElement("div");
     div.classList.add("product");
-    div.innerHTML = `<div class="single-product">
+    div.innerHTML = `<div id="${product.id}" class="single-product">
       <div>
     <img class="product-image" src=${product.image}></img>
       </div>
@@ -22,7 +22,7 @@ const showProducts = (products) => {
       <h2>Price: $ ${product.price}</h2>
       <p><span class="text-warning">rating:</span> <span class="text-success">${product.rating.rate}</span> <span class="text-warning">rated-by:</span><span class="text-success"> ${product.rating.count}</span></p>
       <button onclick="addToCart(${product.price})" id="addToCart-btn" class="buy-now btn btn-success">add to cart</button>
-      <button onclick="loadDetails(${product.id})" id="details-btn" class="btn btn-danger">Details</button></div>
+      <button onclick="loadDetails(${product.id})" id="details-btn" class="btn btn-danger dropdown">Details</button></div>
       `;
     document.getElementById("all-products").appendChild(div);
   }
@@ -83,5 +83,15 @@ const loadDetails = (id) => {
   const url = `https://fakestoreapi.com/products/${id}`;
   fetch(url)
     .then((response) => response.json())
-    .then((data) => console.log(data));
+    .then((data) => showDetails(data));
 };
+const showDetails = (data) => {
+  console.log(data)
+  const sec = document.getElementById(data.id);
+  sec.innerHTML = `
+  <img style="height: 150px;" src=${data.image}></img>
+  <h4 class="text-warning">${data.title}</h4>
+      <p class="text-info">${data.description}</p>
+      <button class="btn btn-danger dropdown">close</button></div>
+      `
+}
