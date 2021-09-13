@@ -27,6 +27,7 @@ const showProducts = (products) => {
     document.getElementById("all-products").appendChild(div);
   }
 };
+//add products on cart function
 let count = 0;
 const addToCart = (price) => {
   count = count + 1;
