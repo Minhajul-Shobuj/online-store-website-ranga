@@ -8,7 +8,6 @@ loadProducts();
 
 // show all product in UI 
 const showProducts = (products) => {
-  console.log(products)
   const allProducts = products.map((product) => product);
   for (const product of allProducts) {
     const div = document.createElement("div");
@@ -22,7 +21,7 @@ const showProducts = (products) => {
       <h2>Price: $ ${product.price}</h2>
       <p><span class="text-warning">rating:</span> <span class="text-success">${product.rating.rate}</span> <span class="text-warning">rated-by:</span><span class="text-success"> ${product.rating.count}</span></p>
       <button onclick="addToCart(${product.price})" id="addToCart-btn" class="buy-now btn btn-success">add to cart</button>
-      <button onclick="loadDetails(${product.id})" id="details-btn" class="btn btn-danger dropdown">Details</button></div>
+      <button onclick="loadDetails(${product.id})" id="details-btn" class="btn btn-danger">Details</button></div>
       `;
     document.getElementById("all-products").appendChild(div);
   }
@@ -86,12 +85,10 @@ const loadDetails = (id) => {
     .then((data) => showDetails(data));
 };
 const showDetails = (data) => {
-  console.log(data)
   const sec = document.getElementById(data.id);
   sec.innerHTML = `
   <img style="height: 150px;" src=${data.image}></img>
   <h4 class="text-warning">${data.title}</h4>
       <p class="text-info">${data.description}</p>
-      <button class="btn btn-danger dropdown">close</button></div>
-      `
-}
+      <button onclick="loadProducts()" class="btn btn-danger">close</button></div>`
+};
